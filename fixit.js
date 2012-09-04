@@ -35,12 +35,14 @@ function fix_blocksorg() {
     /* fix bl.ocks.org ugly <h1> */
     var style = frame_doc.createElement('style');
     style.type = 'text/css';
+    // right margin to prevent overlapping the timestamp
     style.innerHTML = 'h1.gist-title { font-size: 48px; letter-spacing: -2px; margin: .3em 4em .1em 0; line-height: 1em; }';
     frame_doc.getElementsByTagName('head')[0].appendChild(style);
     
     var style = frame_doc.createElement('style');
     style.type = 'text/css';
-    style.innerHTML = '.gist-readme h1 { font-size: 28px; letter-spacing: 0px; margin: 2em 5em .5em 0; line-height: 1.1em; font-weight: bold; }';
+    // right margin to prevent overlapping the 'Open in new window' text/link
+    style.innerHTML = '.gist-readme h1 { font-size: 36px; letter-spacing: 0px; margin: 1em 4em .5em 0; line-height: 1.1em; font-weight: bold; }';
     frame_doc.getElementsByTagName('head')[0].appendChild(style);
   
     frame_doc.blocksorg_v1_000_fixed = true;
