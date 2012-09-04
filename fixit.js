@@ -44,3 +44,4 @@ function fix_blocksorg() {
   return tweaker;
 }
   
+fix_blocksorg();
