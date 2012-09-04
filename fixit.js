@@ -6,7 +6,7 @@ function fix_blocksorg() {
     return tweaker;
   };
   
-  tweaker.adjust_gist_iframe(width, height) {
+  tweaker.adjust_gist_iframe = function(width, height) {
     if (width > 0 && d3) {
       d3.select(frame)
         .style("width", width);
