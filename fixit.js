@@ -7,6 +7,9 @@ function fix_blocksorg() {
   };
   
   tweaker.adjust_gist_iframe = function(width, height) {
+    // make sure the general fix is always being applied first:
+    fix_blocksorg();
+    
     if (width > 0 && d3) {
       d3.select(frame)
         .style("width", width);
@@ -17,14 +20,17 @@ function fix_blocksorg() {
     }
     return tweaker;
   }
-  
+
   try {
     frame = window.frameElement;
     if (!frame)
-      return;
+      return tweaker;
     frame_doc = frame.ownerDocument;
     if (!frame_doc)
-      return;
+      return tweaker;
+
+    if (frame_doc.blocksorg_v1_000_fixed === true)
+      return tweaker;
 
     /* fix bl.ocks.org ugly <h1> */
     var style = frame_doc.createElement('style');
@@ -36,6 +42,8 @@ function fix_blocksorg() {
     style.type = 'text/css';
     style.innerHTML = '.gist-readme h1 { font-size: 28px; letter-spacing: 0px; margin: 2em 5em .5em 0; line-height: 1.1em; font-weight: bold; }';
     frame_doc.getElementsByTagName('head')[0].appendChild(style);
+  
+    frame_doc.blocksorg_v1_000_fixed = true;
     
   } catch (e) {
     // forget about it...
