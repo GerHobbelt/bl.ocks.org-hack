@@ -1,4 +1,3 @@
-
 function fix_blocksorg() {
   var frame = null;
   var frame_doc = null;
@@ -7,11 +6,11 @@ function fix_blocksorg() {
   };
   
   tweaker.adjust_gist_iframe(width, height) {
-    if (width > 0 && d3) {
+    if (width != null && d3) {
       d3.select(frame)
         .style("width", width);
     }
-    if (height > 0 && d3) {
+    if (height != null && d3) {
       d3.select(frame)
         .style("height", height);
     }
